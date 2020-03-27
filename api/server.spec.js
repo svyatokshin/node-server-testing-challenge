@@ -4,13 +4,14 @@ const server = require('./server.js');
 describe('server.js', function() {
     describe('GET /', function() {
         it('should return 200 OK (async)', async function() {
-            const response = await request(server).get('/');
+            const response = await request(server).get('/api/users');
             expect(response.status).toBe(200);
         })
 
-        it("should return JSON", function() {
-            return request(server).get('/').then(res => {
-                expect(res.type).toMatch(/json/i);
+        it("should return JSON", async function() {
+            const res = await request(server).get('/api/users');
+
+                expect(res.type).toMatch(/json/i)
             })
         });
 
@@ -22,4 +23,3 @@ describe('server.js', function() {
             })
         });
     })
-})
