@@ -46,7 +46,7 @@ server.post('/', (req,res) => {
 server.delete('/:id', async (req, res) => {
     const id = req.params.id;
 
-    const user = await User.findById(id);
+    const user = await Users.findById(id);
 
     if(user) {
         Users.remove(user.id)
@@ -57,7 +57,7 @@ server.delete('/:id', async (req, res) => {
             res.status(500).json(err)
         })
     } else {
-        res.status(404).json(err);
+        res.status(404).json({message: "Cant find that user"});
     }
 })
 
